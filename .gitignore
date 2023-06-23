@@ -8,3 +8,6 @@ src/build
 
 # For Dev
 NOTES.md
+
+# Secrets
+# .env
