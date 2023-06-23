@@ -1,5 +1,10 @@
 /node_modules/
-/public/build/
-public/index.html
+
+dist/*
+!dist/manifest.json
+
 src/build
 .DS_Store
+
+# For Dev
+NOTES.md

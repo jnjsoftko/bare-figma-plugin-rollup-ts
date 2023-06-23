@@ -20,7 +20,7 @@ export default [{
 	output: {
 		format: 'iife',
 		name: 'ui',
-		file: 'src/build/bundle.js'
+		file: 'dist/bundle.js'
 	},
 	plugins: [
 		svelte({
@@ -46,7 +46,7 @@ export default [{
 		}),
 		htmlBundle({
 			template: 'src/template.html',
-			target: 'public/index.html',
+			target: 'dist/index.html',
 			inline: true
 		}),
 
@@ -56,7 +56,7 @@ export default [{
 
 		// Watch the `dist` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!production && livereload('dist'),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
@@ -69,7 +69,7 @@ export default [{
 {
 	input: 'src/code.ts',
 	output: {
-		file: 'public/code.js',
+		file: 'dist/code.js',
 		format: 'cjs',
 		name: 'code'
 	},

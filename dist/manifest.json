@@ -1,0 +1,17 @@
+{
+  "name": "jnj-figma-plugin",
+  "id": "181822273723712099",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "index.html",
+  "editorType": [
+    "figma",
+    "figjam"
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "*"
+    ],
+    "reasoning": "development"
+  }
+}
