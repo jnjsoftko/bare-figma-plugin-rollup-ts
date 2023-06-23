@@ -21,7 +21,9 @@ import preprocess from 'svelte-preprocess';
 import replace from "@rollup/plugin-replace";
 import { config } from "dotenv";
 config('.env');
-console.log('process.env.ROOT_DIR', process.env.ROOT_DIR);
+
+/* uglify */
+import { uglify } from "rollup-plugin-uglify";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -63,6 +65,7 @@ export default [
       }),
       commonjs(),
       json(), // * import json
+      uglify(),  // * uglify code
       svg(),
       postcss({
         extensions: ['.css'],
@@ -74,16 +77,13 @@ export default [
         inline: true
       }),
 
-      // In dev mode, call `npm run start` once
-      // the bundle has been generated
+      // In dev mode, call `npm run start` once the bundle has been generated
       !production && serve(),
 
-      // Watch the `dist` directory and refresh the
-      // browser on changes when not in production
+      // Watch the `dist` directory and refresh the browser on changes when not in production
       !production && livereload('dist'),
 
-      // If we're building for production (npm run build
-      // instead of npm run dev), minify
+      // If we're building for production (npm run build instead of npm run dev), minify
       production && terser()
     ],
     watch: {
@@ -107,6 +107,7 @@ export default [
       typescript(),
       commonjs(),
       json(), // * import json
+      uglify(),  // * uglify code
       production && terser(),
     ]
   },
