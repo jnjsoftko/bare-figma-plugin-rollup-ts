@@ -1,6 +1,7 @@
 <script>
-  import { sendToUI } from '../dist/utils/message.js';
-  import Header from './components/Header.svelte';
+  import { sendToUI } from '../dist/utils/message.js';  // `.js`
+  import Header from './components/Header.svelte';  //  `.svelte`
+  import servers from "../json/env/servers.json";  // * `.json`
 
   // Global CSS from the svelte boilerplate, contains Figma color vars, spacing vars, utility classes and more
   import { GlobalCSS } from 'figma-plugin-ds-svelte';
@@ -28,7 +29,8 @@
   }
 
   function cancel() {
-    console.log("ROOT_DIR", process.env.ROOT_DIR);  // * TEST .env
+    console.log("ROOT_DIR", process.env.ROOT_DIR);  // .env 변수 테스트
+    console.log('servers in PluginUI.svelte', servers);   // import .json 테스트
     parent.postMessage({ pluginMessage: { 'type': 'cancel' } }, '*')
   }
 

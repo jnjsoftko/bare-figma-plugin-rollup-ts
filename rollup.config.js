@@ -6,6 +6,9 @@ import { terser } from 'rollup-plugin-terser';
 import svg from 'rollup-plugin-svg';
 import typescript from 'rollup-plugin-typescript';
 
+/* json */
+import json from "@rollup/plugin-json";
+
 /* Post CSS */
 import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
@@ -59,6 +62,7 @@ export default [
         extensions: ['.svelte', '.mjs', '.js', '.json', '.node']
       }),
       commonjs(),
+      json(), // * import json
       svg(),
       postcss({
         extensions: ['.css'],
@@ -102,6 +106,7 @@ export default [
       }),
       typescript(),
       commonjs(),
+      json(), // * import json
       production && terser(),
     ]
   },

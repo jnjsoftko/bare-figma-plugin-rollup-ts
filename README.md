@@ -125,3 +125,12 @@ envVar = process.env.ENV_VAR  // 좌측(변)에 사용한 것은 변경되지 �
 
 ```
 
+
+## import `.json`
+
+> path: `/json/env/servers.json`
+> code file: code.ts, *.svelte
+
+```js
+  import servers from "../json/env/servers.json";  // * `.json`
+```
