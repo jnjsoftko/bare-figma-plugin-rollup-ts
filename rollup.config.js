@@ -16,6 +16,21 @@ import htmlBundle from 'rollup-plugin-html-bundle';
 const production = !process.env.ROLLUP_WATCH;
 
 export default [{
+		input: [  // `.ts` 추가시 경로 추가
+			'src/utils/basic.ts',
+			'src/utils/message.ts',
+		],
+		output: {
+			dir: 'dist/utils',
+			format: 'cjs',
+		},
+		plugins: [
+			typescript(),
+			commonjs(),
+			production && terser(),
+		],
+	},
+	{
 	input: 'src/main.js',
 	output: {
 		format: 'iife',
@@ -27,12 +42,6 @@ export default [{
 			// enable run-time checks when not in production
 			dev: !production
 		}),
-
-		// If you have external dependencies installed from
-		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration —
-		// consult the documentation for details:¡
-		// https://github.com/rollup/plugins/tree/master/packages/commonjs
 		resolve({
 			browser: true,
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/'),
@@ -78,7 +87,8 @@ export default [{
 		commonjs(),
 		production && terser()
 	]
-}];
+}
+];
 
 function serve() {
 	let started = false;

@@ -1,10 +1,9 @@
 <script>
-
-	//import Global CSS from the svelte boilerplate
-	//contains Figma color vars, spacing vars, utility classes and more
+	import { sendToUI } from '../dist/utils/message.js'
+	// Global CSS from the svelte boilerplate, contains Figma color vars, spacing vars, utility classes and more
 	import { GlobalCSS } from 'figma-plugin-ds-svelte';
 
-	//import some Svelte Figma UI components
+	// Svelte Figma UI components
 	import { Button, Input, Label, SelectMenu } from 'figma-plugin-ds-svelte';
 
 	//menu items, this is an array of objects to populate to our select menus
@@ -23,11 +22,7 @@
 	$: disabled = selectedShape === null;
 
 	function createShapes() {
-		parent.postMessage({ pluginMessage: { 
-			'type': 'create-shapes', 
-			'count': count,
-			'shape': selectedShape.value
-		} }, '*');
+		sendToUI('create-shapes', {count, shape: selectedShape.value});
 	}
 
 	function cancel() {
