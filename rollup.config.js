@@ -25,14 +25,19 @@ config('.env');
 /* uglify */
 import { uglify } from "rollup-plugin-uglify";
 
+/* local settings */
+import * as fs from 'fs';
+
+// ** Utils
+const findFileNamesInFolder = (folder) => {
+  return fs.readdirSync(`${process.env.ROOT_DIR}/${folder}`).filter((name)=> name.endsWith('.ts')).map((name) => `${folder}/${name}`);
+}
+
 const production = !process.env.ROLLUP_WATCH;
 
 export default [
   {
-    input: [  // `.ts` 추가시 경로 추가
-      'src/utils/basic.ts',
-      'src/utils/message.ts',
-    ],
+    input: findFileNamesInFolder('src/utils'),  // `src/utils` 내의 `.ts` 파일 전부 포함
     output: {
       dir: 'dist/utils',
       format: 'cjs',
